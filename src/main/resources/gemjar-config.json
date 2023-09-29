@@ -1,0 +1,17 @@
+{
+  "environment": "dev",
+  "project_name": "ATHENA",
+  "report_name": "FEATURE FRAMEWORK DEMO",
+  "jewel_user": "jewel-yudhisthir",
+  "jewel_bridge_token": "a193695b-e8b5-4857-b23f-a3b5cdfc16a11695635693183",
+  "enter_point": "https://apis.gemecosystem.com/enter-point",
+  "feature": "src/main/resources/features/CandidateModuleHARTRON.feature",
+  "console_report": "n",
+  "email_report": "n",
+  "glue_code": "com.gemini.athena.stepdefinitions",
+  "tags": "@regression",
+  "dev": {
+    "browser_name": "chrome",
+    "launch_url": "https://athena-hartron-dev.geminisolutions.com/"
+  }
+}
