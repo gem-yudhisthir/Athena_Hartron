@@ -2,7 +2,7 @@ Feature: User Management features
 
     Background:
      Given Navigate to page "login"
-     And Login using "" and "abc@123"
+     And Login using "saloni02@gmail.com" and "abc@123"
    #   And Wait while screen loads
 
 

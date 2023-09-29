@@ -54,6 +54,10 @@ public class MyLocators {
     public static By employeeActionsIcon=By.xpath("(//span[contains(@class,'pi pi-ellipsis')]//parent::button)");
     public static By yesBtn=By.xpath("//span[contains(text(),'Yes')]//parent::button");
     public static By currentRole=By.xpath("//div[contains(@class,'multiselect-label')]//div");
+
+    public static By noBtn=By.xpath("//span[contains(text(),'No')]//parent::button");
+
+    public static By instructionsTab = By.xpath("//div[@class='testing']");
     public static By rolesDropdown=By.xpath("//p-multiselect[@formcontrolname=\"roleDetails\"]//div");
     public static By candidateDashboard=By.xpath("//span[text()='Dashboard']");
     public static By infoDropdown=By.xpath("//button[@type='button']");
@@ -66,6 +70,11 @@ public class MyLocators {
     public static String testTab=   "//span[text()='input']//parent::a";
     public static String message="//p-tabpanel[@header='input']//h5";
     public static String profile="//span[text()='input']//parent::a";
+
+    public static By testDuration = By.xpath("(//p[@class='font-weight-light text-secondary'])[3]");
+
+    public static By testTime = By.xpath("(//p[@class='font-weight-light text-secondary'])[2]");
+
     public static String passwordFields="//label[text()='fieldName']//following::input";
     public static By confirmPassword=By.xpath("//label[text()='Confirm Password']//following::input");
     public static By testDate=By.xpath("//b[text()='Date']//parent::p");
@@ -130,8 +139,9 @@ public class MyLocators {
     public static By inactiveStatusBar= By.xpath("//tbody//tr//p-inputswitch");
     public static By getTestName=By.xpath("//div[@class='card hover-effect']//h6//div");
     public static By loginVia=By.xpath("//p-dropdown[@placeholder='Select Option']");
-    public static By viewReport=By.xpath("//button[@label='View Report' and contains(@class,'instBtn')]");
+    public static By submittedTest = By.xpath("//button[@label='Test Submitted']");
     public static By saveNext=By.xpath("//button[contains(text(),'Save & Next')]");
+
     public static By invigilationAlert=By.xpath("//strong[contains(text(),'automatic submission')]");
     public static By batchActionsIcon=By.xpath("//div[@class='p-card-body']//button[contains(@class,'p-button')]");
     public static By addCourse=By.xpath("//i[@ptooltip='Add Course']");
@@ -144,14 +154,16 @@ public class MyLocators {
     public static String createBatch="//button[contains(@ng-reflect-label,'input')]";
     public static By searchbox=By.xpath("//input[@type='search']");
     public static String dropdown="//p-dropdown[@placeholder='input']";
-    public static By testTime = By.xpath("(//p[@class='font-weight-light text-secondary'])[2]");
-    public static By testDuration = By.xpath("(//p[@class='font-weight-light text-secondary'])[3]");
-    public static By CompletedTestTab = By.xpath("");
 
+
+    // private static String input;
+ //   public static String selectTab="(//li[@role='presentation'])["+(input)+"]//parent::a";
     public static String selectTab(int i) {
 
         String path = "//li[@role='presentation']["+(i)+"]//parent::a";
         return path;
     }
+
+
 }
 
