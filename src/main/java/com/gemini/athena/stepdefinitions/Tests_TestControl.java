@@ -318,8 +318,8 @@ public class Tests_TestControl {
                 int totalQues = DriverAction.getElements(MyLocators.paletteBtn).size();
                 for (int i = 0; i < totalQues; i++) {
                     //  enterAnswer();
-                    if (DriverAction.isExist(MyLocators.textarea)) {
-                        DriverAction.typeText(MyLocators.textarea, "abc");
+                    if (DriverAction.isExist(MyLocators.textArea)) {
+                        DriverAction.typeText(MyLocators.textArea, "abc");
                         GemTestReporter.addTestStep("Enter answer in input field", "Successfully entered the answer in input field", STATUS.PASS);
                     } else if (DriverAction.isExist(MyLocators.mcqOptions)) {
                         DriverAction.click(MyLocators.selectOption, "Select an option");

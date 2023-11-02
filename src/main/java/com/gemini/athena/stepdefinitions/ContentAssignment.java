@@ -64,7 +64,7 @@ public class ContentAssignment {
     public void addDescription(String description){
         try{
 
-            DriverAction.typeText(MyLocators.textarea,description);
+            DriverAction.typeText(MyLocators.textArea,description);
         }catch(Exception e){
 
             GemTestReporter.addTestStep("Enter description","Exception encountered- "+e,STATUS.ERR);

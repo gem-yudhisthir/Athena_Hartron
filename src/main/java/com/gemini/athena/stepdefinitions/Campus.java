@@ -24,10 +24,10 @@ public class Campus {
         try {
             //enter the details in fields while registering a campus
             generateUniqueEmail();
-            tpoEmail = "a" + randomString;
+            tpoEmail = "a" + _randomString;
             List<WebElement> campusFields = DriverAction.getElements(MyLocators.inputFields);
             //here randomString is campus mail
-            String[] campusValues = {name, randomString, location, university, tpoName, tpoEmail, tpoContact, description};
+            String[] campusValues = {_name, _randomString, location, university, tpoName, tpoEmail, tpoContact, description};
 
             for (int i = 0; i < campusFields.size(); i++) {
                 campusFields.get(i).clear();
@@ -68,7 +68,7 @@ public class Campus {
     @And("^Search a campus$")
     public void searchCampus() {
         try {
-            DriverAction.typeText(MyLocators.searchbox, name);
+            DriverAction.typeText(MyLocators.searchbox, _name);
         } catch (Exception e) {
             GemTestReporter.addTestStep("Search a campus", "Exception encountered- " + e, STATUS.ERR);
         }
@@ -88,7 +88,7 @@ public class Campus {
     public void verifyCampusRegistered() {
         try {
             String campus = DriverAction.getElementText(CampusLocators.registeredCampus);
-            if (campus.contains(name)) {
+            if (campus.contains(_name)) {
                 GemTestReporter.addTestStep("Verify campus is registered", "Successfully registered the campus", STATUS.PASS);
             } else {
                 GemTestReporter.addTestStep("Verify campus is registered", "Could not verify the registered campus", STATUS.FAIL);
@@ -101,7 +101,7 @@ public class Campus {
     @Then("^Verify campus is updated \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
     public void verifyCampusUpdated(String tpoName, String tpoContact, String location, String university) {
         try {
-            String[] campusValues = {name, "", tpoName, tpoContact, tpoEmail, location, university};
+            String[] campusValues = {_name, "", tpoName, tpoContact, tpoEmail, location, university};
             List<WebElement> row = DriverAction.getElements(CampusLocators.rowLength);
             int c = 0;
             for (int i = 0; i < row.size()-1; i++) {

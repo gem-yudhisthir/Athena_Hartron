@@ -1,20 +1,18 @@
 Feature: Candidate module Hartron features
 
   Background:
-    Given Navigate to page "login"
     And Expand the login via dropdown
-    And Select "Email" from dropdown
     Then Login using "test@gmail.com" and "abc@123"
     And Change resolution
 
-  @regression @Pass
+  @script_fix
   Scenario: Hartron_Candidate_VerifyLoggedInUserMail
     When Expand info dropdown from navbar
     Then Verify the options present in dropdown "Profile", "Change Password", "Logout"
     And Select change password from dropdown and verify the dialog box
     Then Verify the email of candidate "test@gmail.com"
 
-  @regression @Pass
+  @script_fix
   Scenario Outline: Hartron_Candidate_VerifyExploreTestsBtnInProfile
     When Expand info dropdown from navbar
     Then Verify the options present in dropdown "<option1>", "<option2>", "<option3>"
@@ -25,7 +23,7 @@ Feature: Candidate module Hartron features
       | option1 | option2         | option3 |
       | Profile | Change Password | Logout  |
 
-  @regression @Pass
+  @script_fix
   Scenario Outline: Hartron_Candidate_ChangePasswordActions
     And Expand info dropdown from navbar
     Then Verify the options present in dropdown "<option1>", "<option2>", "<option3>"
@@ -45,7 +43,7 @@ Feature: Candidate module Hartron features
       | option1 | option2         | option3 | error                  | countMandatoryFields | countMandatoryFields1 |
       | Profile | Change Password | Logout  | This Field is required | 3                    | 1                     |
 
-  @regression @Pass
+  @script_fix
   Scenario Outline: Hartron_Candidate_FetchStartEndDateOfTest
     Given Verify the default tab selected "<tab>"
     Then Get start and end date of test and verify current date is within range
@@ -54,15 +52,14 @@ Feature: Candidate module Hartron features
       | Active Tests |
 
 
-  @regression @Pass
-  Scenario: Hartron_Candidate_VerifyTestSubmittedButton
+  Scenario: Hartron_Candidate_VerifyTestSubmittedButtonForCompletedTest
     When Switch to "Completed Tests"
     And Verify if Test Submitted button exists
 
-  @regression @Pass
+
   Scenario Outline: Hartron_Candidate_ClickOnStartTestAndDon'tAttemptTest
     Then Verify the default tab selected "<tab>"
-    And Start test and verify instructions video is displayed
+    And Start test
     Then Check the instructions checkbox
     Then Click the button "NEXT"
     Then Click the No button and verify if test is started
@@ -70,9 +67,9 @@ Feature: Candidate module Hartron features
       | tab          |
       | Active Tests |
 
-  @regression @Pass
+
   Scenario Outline: Hartron_Candidate_ShuffleQuestionsTest_ClickOnSectionOpenIt
-    When Start test and verify instructions video is displayed
+    When Start test
     Then Check the instructions checkbox
     Then Click the button "NEXT"
     Then Click the Yes button
@@ -81,98 +78,166 @@ Feature: Candidate module Hartron features
     And Click the button "Attempt"
     Then Verify user navigates to questions screen of the selected section "Technical"
     Examples:
-       | sectionName |
-       | Technical   |
+      | sectionName |
+      | Technical   |
 
-  @regression @Pass
+
   Scenario Outline: Hartron_Candidate_ShuffleQuestionsTest_NavigateBetweenExamSections
-    When Start test and verify instructions video is displayed
+    When Start test
     Then Check the instructions checkbox
     And Click the button "NEXT"
     When Click the Yes button
-    And Click the button "Attempt"
     And Click on the section ticket "<sectionName>"
-    Then Verify user navigates to questions screen of the selected section "Logical"
+    Then Verify user navigates to questions screen of the selected section "Section C"
     When Expand the dropdown containing sections
     And Select "Technical" from dropdown
     Then Verify user navigates to questions screen of the selected section "Technical"
     Examples:
-    | sectionName |
-    | Logical   |
+      | sectionName |
+      | Section C   |
 
-  @regression @Pass
+
   Scenario: Hartron_Candidate_Save&NextBtnFunctionality
-    When Start test and verify instructions video is displayed
+    When Start test
     Then Check the instructions checkbox
     And Click the button "NEXT"
     When Click the Yes button
     And Click the button "Attempt"
     And Select or type an answer
     And Click the button Save & Next
-    And Click the button "Finish Test"
-    Then Verify user is able to save answers
 
-
-  @regression @Pass
-  Scenario Outline: Hartron_Candidate_EnterSubjectiveAnswerSave&ClearGetWordLimit
-    When Start test and verify instructions video is displayed
-    Then Check the instructions checkbox
-    And Click the button "NEXT"
-    When Click the Yes button
-    And Click on the section ticket "<sectionName>"
-    And Click the button "Attempt"
-    And Select or type an answer
-    And Click the button "Save"
-    And Click the button "Clear"
-    And Get Word Limit value
-    Examples:
-    |sectionName|
-    | Technical |
-
-
-  @regression @Pass
   Scenario: Hartron_Candidate_ClearBtnFunctionality
-    Then Start test and verify instructions video is displayed
+    Then Start test
     Then Check the instructions checkbox
     Then Click the button "NEXT"
     Then Click the Yes button
-    Then Click the button "Attempt"
+    And Click on Subjective section Attempt
     Then Select or type an answer
     And Click the button "Clear"
 
-  @regression @Pass
+  Scenario: Hartron_Candidate_EnterSubjectiveAnswerSave&GetWordLimit
+    When Start test
+    Then Check the instructions checkbox
+    And Click the button "NEXT"
+    When Click the Yes button
+    And Click on Subjective section Attempt
+    And Select or type an answer
+    And Click the button "Save"
+    And Get Word Limit value
+
   Scenario: Hartron_Candidate_FetchQuestionCountAfterAttemptingParticularSection
-    Then Start test and verify instructions video is displayed
+    Then Start test
     Then Check the instructions checkbox
     Then Click the button "NEXT"
     Then Click the Yes button
-    Then Click the button "Attempt"
+    And Click on Subjective section Attempt
     Then Select or type all the questions of a section and save
 
-
-  @regression @Pass
   Scenario: Hartron_Candidate_FinishTestWithoutSavingAnswers
-    When Start test and verify instructions video is displayed
+    When Start test
     Then Check the instructions checkbox
     And Click the button "NEXT"
     Then Click the Yes button
-    Then Click the button "Attempt"
+    And Click on Subjective section Attempt
     And Click the button "Finish Test"
-    Then Validate question count
 
-  @regression @Pass
   Scenario: Hartron_Candidate_SaveQuestionWithoutAnswer
-    When Start test and verify instructions video is displayed
+    When Start test
+    And Check the instructions checkbox
+    And Click the button "NEXT"
+    When Click the Yes button
+    And Click on Subjective section Attempt
+    And Click the button Save & Next
+    Then Verify the popup message "to save the answer"
+
+  @AutomatedByYudhishthir
+  Scenario Outline: Hartron_Candidate_VerifyingStartTimeSumDurationWithEndTime
+    Then Verify the default tab selected "<tab>"
+    Then Get start and end time of test and verify duration
+    Examples:
+      | tab          |
+      | Active Tests |
+
+
+  Scenario Outline: Hartron_Candidate_LogOut
+    Given Verify the default tab selected "<tab>"
+    When Expand info dropdown from navbar
+    Then Verify the options present in dropdown "Profile", "Change Password", "Logout"
+    And Select "Logout" from dropdown
+    Then Verify if user is logged out
+    Examples:
+      | tab             |
+      | Active Tests    |
+
+  Scenario Outline:Hartron_Candidate_ClickOnHartronLogoVerifyIfUserInHomePage
+    When Start test
+    And Check the instructions checkbox
+    And Click the button "NEXT"
+    When Click the Yes button
+    Then Click on Hartron Logo from "<sections>" page verify if user is in home page
+    When Start test
     And Check the instructions checkbox
     And Click the button "NEXT"
     When Click the Yes button
     And Click the button "Attempt"
-    And Click the button Save & Next
-    Then Verify the popup message "to save the answer"
+    Then Click on Hartron Logo from "<exams>" page verify if user is in home page
+    Examples:
+      |sections |    exams|
+      | section |   exam  |
 
-  @regression @Pass
+  Scenario Outline: Hartron_Candidate_VerifyCourseEnrollmentValueInHeaderAndProfileMatches
+    Given Verify the default tab selected "<tab>"
+    Then Fetch Enrollment No and Course values
+    When Expand info dropdown from navbar
+    And Select "Profile" from dropdown
+    Then Verify if Course and Enrollment value matches with Header and in Profile
+    Examples:
+      | tab             |
+      | Active Tests    |
+
+  Scenario:Hartron_Candidate_ClickOnCtrlButtonDuringExamVerifyPopup
+    When Start test
+    And Check the instructions checkbox
+    And Click the button "NEXT"
+    When Click the Yes button
+    And Click the button "Attempt"
+    Then Perform Ctrl Keyboard Action and verify popup
+
+  Scenario:Hartron_Candidate_ContinueErrPopupVerifyUserOnTest
+    When Start test
+    And Check the instructions checkbox
+    And Click the button "NEXT"
+    When Click the Yes button
+    And Click the button "Attempt"
+    Then Perform Ctrl Keyboard Action and verify popup
+    And Click on Continue Verify if User is back to test
+
+  Scenario Outline:Hartron_Candidate_VerifyActive&CompletedTestsButtonsOnDashboard
+    Given Verify the default tab selected "<tab>"
+    When Switch to "Completed Tests"
+    Examples:
+      | tab          |
+      | Active Tests |
+
+  Scenario:Hartron_Candidate_VerifyDeadlineMatchesOnDashboardAndInstructions
+    When Get test Deadline Before Test
+    When Start test
+    Then verify if deadline matches on dashboard and instructions screen
+
+  Scenario Outline:Hartron_Candidate_SectionOrderAndCountInstructionsAndSectionsScreen
+    When Get test section details "<Section 1>","<Section 2>","<Section 3>","<Section 4>","<Section 5>" and "<Section 6>" on instruction screen
+    When Start test
+    And Check the instructions checkbox
+    And Click the button "NEXT"
+    When Click the Yes button
+    Then Get section details from section screen
+    Examples:
+      |Section 1|Section 2|Section 3|Section 4|Section 5|Section 6|
+      |Section B|Logical|Section A| Technical|Section C|Programming language|
+
+  @regression @Pass @LAST
   Scenario: Hartron_Candidate_FinishTestBackToDashboard
-    When Start test and verify instructions video is displayed
+    When Start test
     And Check the instructions checkbox
     And Click the button "NEXT"
     When Click the Yes button
@@ -186,63 +251,11 @@ Feature: Candidate module Hartron features
     When Select Back To Dashboard
     Then Verify if user is on Dashboard
 
-
-  @regression @Pass
-  Scenario Outline: Hartron_Candidate_VerifyingStartTimeSumDurationWithEndTime
-    Then Verify the default tab selected "<tab>"
-    Then Get start and end time of test and verify duration
+  @LAST_1
+  Scenario Outline: Hartron_Candidate_VerifySubmittedTestMovedToCompletedTestsTab
+    Given Verify the default tab selected "<tab>"
+    When Switch to "Completed Tests"
+    Then Verify if submitted test is moved to Completed tests tab
     Examples:
       | tab          |
       | Active Tests |
-
-
-  @regression @Pass
-  Scenario Outline: Hartron_Candidate_LogOut
-    Given Verify the default tab selected "<tab>"
-    When Expand info dropdown from navbar
-    Then Verify the options present in dropdown "Profile", "Change Password", "Logout"
-    And Select "Logout" from dropdown
-    Then Verify if user is logged out
-
-    Examples:
-      | tab             |
-      | Active Tests    |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

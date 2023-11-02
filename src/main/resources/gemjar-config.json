@@ -2,19 +2,18 @@
   "environment": "dev",
   "project_name": "HARTRON",
   "report_name": "Hartron-CandidateModule",
+  "feature": "src/main/resources/features/CandidateModuleHARTRON.feature",
   "jewel_user": "sivapuja",
   "jewel_bridge_token": "130e3eef-444c-475f-bf2a-9395e9f505fa1695884882026",
   "enter_point": "https://apis.gemecosystem.com/enter-point",
-  "email_to": "sivapuja.pasupulati@geminisolutions.com,yudhishthir.gour@geminisolutions.com",
-  "feature": "src/main/resources/features/CandidateModuleHARTRON.feature",
+  "email_to": "sivapuja.pasupulati@geminisolutions.com",
   "console_report": "n",
   "email_report": "Y",
-  "jewel_screen_shots": "Y",
   "glue_code": "com.gemini.athena.stepdefinitions",
   "tags": "@Pass",
   "dev": {
     "browser_name": "chrome",
-    "launch_url": "https://athena-hartron-dev.geminisolutions.com/"
+    "launch_url": "http://10.50.17.30:9080/login"
   }
 
 }

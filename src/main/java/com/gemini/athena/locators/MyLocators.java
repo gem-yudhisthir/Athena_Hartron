@@ -1,16 +1,11 @@
 package com.gemini.athena.locators;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
-import java.util.Vector;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class MyLocators {
     public static By usernameField=By.xpath("//input[@formcontrolname='username']");
     public static By passwordField=By.xpath("//input[@formcontrolname='password']");
-    public static By dashboard=By.xpath("//h6[text()='Dashboard']");
+    public static By dashboard=By.xpath("//span[text()='Dashboard']");
     public static By loginBtn=By.xpath("//button[@label='LOGIN']");
     public static By sidebar=By.xpath("//p-toolbar//em");
     public static String selectModule="//span[contains(text(),'input')]//parent::a";
@@ -60,6 +55,8 @@ public class MyLocators {
     public static By instructionsTab = By.xpath("//div[@class='testing']");
     public static By rolesDropdown=By.xpath("//p-multiselect[@formcontrolname=\"roleDetails\"]//div");
     public static By candidateDashboard=By.xpath("//span[text()='Dashboard']");
+
+    public static By testTitle = By.xpath("//div[text()=' AutomationTest ']");
     public static By infoDropdown=By.xpath("//button[@type='button']");
     public static By infoOptions=By.xpath("//p-slidemenusub//a//span[2]");
     public static By changePassword=By.xpath("//span[text()='Change Password']//parent::a");
@@ -69,6 +66,7 @@ public class MyLocators {
     public static String numTest="//p-tabpanel[@ng-reflect-header='input']//div[@class='card hover-effect']";
     public static String testTab=   "//span[text()='input']//parent::a";
     public static String message="//p-tabpanel[@header='input']//h5";
+
     public static String profile="//span[text()='input']//parent::a";
 
     public static By testDuration = By.xpath("(//p[@class='font-weight-light text-secondary'])[3]");
@@ -82,18 +80,31 @@ public class MyLocators {
     public static By instructionsVideo=By.xpath("//span[text()='Instructions Video']");
     public static By testSummary=By.xpath("//h4[text()='Summary']");
     public static By reportColumns=By.xpath("//tr[@class=\"ng-star-inserted\"]//th");
-    public static String testName="//h6[@title='name']//following::button[contains(text(),'Start Test')][1]";
-    public static String sections="//h6[contains(text(),'input')]//parent::div";
+
+    public static String section = "//h6[text()=' Section C ']//following::button";
+
     public static By sectionHeading=By.xpath("//h4[text()='Sections']");
     public static By instructionsCheckbox=By.xpath("//div[@class='p-checkbox-box']");
     public static By startTestDialog=By.xpath("//span[contains(@class,'confirm-dialog')]");
-    public static By questionsscreen=By.xpath("//div//athena-questions-screen");
+    public static By questionsScreen =By.xpath("//div//athena-questions-screen");
     public static String pageNavigate="//a[contains(@href,'input')]";
     public static String nextBtn="(//button[@label='input'])[2]";
     public static String sectionSelected="//p[contains(text(),'input')]";
     public static By sectionsDropdown=By.xpath("//p-dropdown[@placeholder='Select Category']");
     public static String sectionOptions="//span[text()='input']//parent::li//parent::p-dropdownitem";
-    public static By textarea=By.xpath("//div//textarea");
+    public static By textArea =By.xpath("//div//textArea");
+
+    public static By continueErrorPopup= By.xpath("//span[contains(text(),'Continue')]");
+
+    public static By deadlineVal = By.xpath("//p[@class='font-weight-light text-secondary']");
+
+    public static By deadlineInstr = By.xpath("//b[text()='Sun 31/12/2023, 04:24 PM.']");
+
+    public static By sectionsList = By.xpath("//h6[@class='font-weight-bold ml-2 mt-2']");
+    public static By skipEle = By.xpath("//button[@label='Skip']");
+    public static By wordLimit = By.xpath("//b[contains(text(),'Word')]");
+    public static By courseEnroll = By.xpath("//h6[@class='ms-2 mr-2']");
+    public static By profileList = By.xpath("//div[@class='col-sm-6 p-0 details-value']");
     public static By selectOption=By.xpath("//p-radiobutton[@name='groupname']");
     public static By paletteBtn=By.xpath("//athena-question-palette//button");
     public static By mcqOptions=By.xpath("//p-radiobutton//input[@type='radio']");
@@ -139,6 +150,8 @@ public class MyLocators {
     public static By inactiveStatusBar= By.xpath("//tbody//tr//p-inputswitch");
     public static By getTestName=By.xpath("//div[@class='card hover-effect']//h6//div");
     public static By loginVia=By.xpath("//p-dropdown[@placeholder='Select Option']");
+
+    public static By mailValue = By.xpath("//span[text()='Email']");
     public static By submittedTest = By.xpath("//button[@label='Test Submitted']");
     public static By saveNext=By.xpath("//button[contains(text(),'Save & Next')]");
 
@@ -153,12 +166,11 @@ public class MyLocators {
     public static By batchCreated=By.xpath("//div[@class='p-card-body']//div[contains(@class,'name')]");
     public static String createBatch="//button[contains(@ng-reflect-label,'input')]";
     public static By searchbox=By.xpath("//input[@type='search']");
-
     public static String dropdown="//p-dropdown[@placeholder='input']";
 
 
     // private static String input;
- //   public static String selectTab="(//li[@role='presentation'])["+(input)+"]//parent::a";
+    //   public static String selectTab="(//li[@role='presentation'])["+(input)+"]//parent::a";
     public static String selectTab(int i) {
 
         String path = "//li[@role='presentation']["+(i)+"]//parent::a";
